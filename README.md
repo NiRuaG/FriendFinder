@@ -1,2 +1,2 @@
 # FriendFinder
-Find Compatibile Friends
+Find Compatible Friends
