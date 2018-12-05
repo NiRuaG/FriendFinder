@@ -7,7 +7,8 @@ module.exports = (app) => {
   });
 
   app.post("/api/friends", (req, res) => {
-    console.log(req);
+    console.log(req.body);
+    
     res.send("add friend by survey")
   });
 };

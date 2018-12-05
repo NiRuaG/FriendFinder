@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Friend Finder - Survey</title>
     <link
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -11,11 +11,189 @@
       integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
       crossorigin="anonymous"
     />
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+    <style>
+    </style>
   </head>
-  <body>
-    
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous" ></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous" ></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous" ></script>
+  <body class="container bg-dark">
+    <div class="row">
+      <div class="card col px-0">
+        <h1 class="card-header text-center bg-danger text-light py-3">
+          <strong>Friend Finder Survey</strong>
+        </h1>
+        <form id="surveyForm" class="card-body bg-dark">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item bg-dark text-danger text-center">
+              <h3><strong>About You</strong></h3>
+            </li>
+            <li class="list-group-item">
+              <div class="form-group">
+                <label for="nameInput">Name <small class="text-muted"> (required)</small></label>
+                <input type="text" class="form-control" id="name_input" placeholder="Your Name" />
+              </div>
+              <div class="form-group">
+                <label for="photoLink_input">Link to a Photo <small class="text-muted">(required)</small></label>
+                <input type="url" class="form-control" id="photoLink_input" placeholder="Photo URL" />
+              </div>
+            </li>
+            <li class="list-group-item bg-dark text-danger text-center">
+              <h3><strong>Questions</strong></h3>
+            </li>
+            <li class="list-group-item">
+              <div class="form-group">
+                <label>1. Your mind is always buzzing with unexplored ideas and plans.</label>
+                <select class="surveyQ custom-select">
+                  <option selected>(How would you agree?)</option>
+                  <option value="1">Strongly Disagree</option>
+                  <option value="2">Slightly Disagree</option>
+                  <option value="3">Neither Agree or Disagree</option>
+                  <option value="4">Slightly Agree</option>
+                  <option value="5">Strongly Agree</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>2. Generally speaking, you rely more on your experience than your imagination.</label>
+                <select class="surveyQ custom-select">
+                  <option selected>(How would you agree?)</option>
+                  <option value="1">Strongly Disagree</option>
+                  <option value="2">Slightly Disagree</option>
+                  <option value="3">Neither Agree or Disagree</option>
+                  <option value="4">Slightly Agree</option>
+                  <option value="5">Strongly Agree</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>3. You find it easy to stay relaxed and focused even when there is some pressure.</label>
+                <select class="surveyQ custom-select">
+                  <option selected>(How would you agree?)</option>
+                  <option value="1">Strongly Disagree</option>
+                  <option value="2">Slightly Disagree</option>
+                  <option value="3">Neither Agree or Disagree</option>
+                  <option value="4">Slightly Agree</option>
+                  <option value="5">Strongly Agree</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>4. You rarely do something just out of sheer curiosity.</label>
+                <select class="surveyQ custom-select">
+                  <option selected>(How would you agree?)</option>
+                  <option value="1">Strongly Disagree</option>
+                  <option value="2">Slightly Disagree</option>
+                  <option value="3">Neither Agree or Disagree</option>
+                  <option value="4">Slightly Agree</option>
+                  <option value="5">Strongly Agree</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>5. People can rarely upset you.</label>
+                <select class="surveyQ custom-select">
+                  <option selected>(How would you agree?)</option>
+                  <option value="1">Strongly Disagree</option>
+                  <option value="2">Slightly Disagree</option>
+                  <option value="3">Neither Agree or Disagree</option>
+                  <option value="4">Slightly Agree</option>
+                  <option value="5">Strongly Agree</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>6. It is often difficult for you to relate to other people’s feelings.</label>
+                <select class="surveyQ custom-select">
+                  <option selected>(How would you agree?)</option>
+                  <option value="1">Strongly Disagree</option>
+                  <option value="2">Slightly Disagree</option>
+                  <option value="3">Neither Agree or Disagree</option>
+                  <option value="4">Slightly Agree</option>
+                  <option value="5">Strongly Agree</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>7. In a discussion, truth should be more important than people’s sensitivities.</label>
+                <select class="surveyQ custom-select">
+                  <option selected>(How would you agree?)</option>
+                  <option value="1">Strongly Disagree</option>
+                  <option value="2">Slightly Disagree</option>
+                  <option value="3">Neither Agree or Disagree</option>
+                  <option value="4">Slightly Agree</option>
+                  <option value="5">Strongly Agree</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>8. You rarely get carried away by fantasies and ideas.</label>
+                <select class="surveyQ custom-select">
+                  <option selected>(How would you agree?)</option>
+                  <option value="1">Strongly Disagree</option>
+                  <option value="2">Slightly Disagree</option>
+                  <option value="3">Neither Agree or Disagree</option>
+                  <option value="4">Slightly Agree</option>
+                  <option value="5">Strongly Agree</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>9. You think that everyone’s views should be respected regardless of whether they are supported by facts or not.</label>
+                <select class="surveyQ custom-select">
+                  <option selected>(How would you agree?)</option>
+                  <option value="1">Strongly Disagree</option>
+                  <option value="2">Slightly Disagree</option>
+                  <option value="3">Neither Agree or Disagree</option>
+                  <option value="4">Slightly Agree</option>
+                  <option value="5">Strongly Agree</option>
+                </select>
+              </div>
+              <div class="form-group">
+                <label>10. You feel more energetic after spending time with a group of people.</label>
+                <select class="surveyQ custom-select">
+                  <option selected>(How would you agree?)</option>
+                  <option value="1">Strongly Disagree</option>
+                  <option value="2">Slightly Disagree</option>
+                  <option value="3">Neither Agree or Disagree</option>
+                  <option value="4">Slightly Agree</option>
+                  <option value="5">Strongly Agree</option>
+                </select>
+              </div>
+            </li>
+            <li class="list-group-item form-row bg-dark text-center">
+              <button type="submit" class="btn btn-danger col-md-6"><strong>Submit & Find your Matches!</strong></button>
+            </li>
+          </ul>
+        </form>
+      </div>
+    </div>
+
+    <script type="text/javascript">
+      $("#surveyForm").submit( (event) => {
+        event.preventDefault();
+
+        let thisFriendInfo = {
+          name  : $("#name_input").val().trim(),
+          photo : $("#photoLink_input").val().trim(),
+          scores: Array.from($(".surveyQ")).map(el => +el.value)
+        };
+        console.log(thisFriendInfo);
+
+        console.log($("#surveyForm").serialize());
+        $.post("/api/friends", thisFriendInfo)
+          .then( (data, status, jqxhr) => {
+            // console.log("post to api", data, status, jqxhr);
+            console.log("TODO: make modal with data", data);
+          })
+          .catch( err => console.log("post error:", err));
+      });
+    </script>
+
+      <!-- <script
+        src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"
+      ></script>
+      <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"
+      ></script>
+      <script
+        src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"
+      ></script> -->
   </body>
 </html>
