@@ -3,7 +3,7 @@ console.log(friendData);
 
 module.exports = (app) => {
   app.get("/api/friends", (req, res) => {
-    res.send("return all friends");
+    return res.send(friendData);
   });
 
   app.post("/api/friends", (req, res) => {
