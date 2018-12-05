@@ -152,7 +152,9 @@
               </div>
             </li>
             <li class="list-group-item form-row bg-dark text-center">
-              <button type="submit" class="btn btn-danger col-md-6"><strong>Submit & Find your Matches!</strong></button>
+              <button type="submit" class="btn btn-danger col-md-6">
+                <strong>Submit & Find your Match!</strong>
+              </button>
             </li>
           </ul>
         </form>
@@ -164,28 +166,21 @@
         event.preventDefault();
 
         let thisFriendInfo = {
-          name  : $("#name_input").val().trim(),
+          name  : $("#name_input")     .val().trim(),
           photo : $("#photoLink_input").val().trim(),
           scores: Array.from($(".surveyQ")).map(el => +el.value)
         };
         console.log(thisFriendInfo);
 
-        console.log($("#surveyForm").serialize());
         $.post("/api/friends", thisFriendInfo)
           .then( (data, status, jqxhr) => {
             // console.log("post to api", data, status, jqxhr);
             console.log("TODO: make modal with data", data);
           })
-          .catch( err => console.log("post error:", err));
+          .catch( (...err) => console.log("post error:", err));
       });
     </script>
-
       <!-- <script
-        src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"
-      ></script>
-      <script
         src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
         integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
         crossorigin="anonymous"
