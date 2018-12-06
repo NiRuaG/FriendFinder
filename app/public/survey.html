@@ -16,6 +16,31 @@
     </style>
   </head>
   <body class="container bg-dark">
+    <!--#region MODAL -->
+    <div class="modal fade" id="resultModal" tabindex="-1" role="dialog" aria-labelledby="bestFriendModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header bg-danger text-white">
+            <h5 class="modal-title text-center" id="bestFriendModalLabel">Here is Your Most-Compatible Friend Result</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body card">
+            <img id="bestFriend_photo" class="card-img-top" src="https://fillmurray.com/200/200" alt="Card image cap">
+            <div class="card-body">
+              <h5 id="bestFriend_name" class="card-title"></h5>
+              <p class="card-text">Compatibility Score: <span id="bestFriend_score"></span></p>
+            </div>
+          </div>
+          <div class="modal-footer bg-danger">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--#endregion MODAL -->
+  
     <div class="row">
       <div class="card col px-0">
         <h1 class="card-header text-center bg-danger text-light py-3">
@@ -161,6 +186,12 @@
       </div>
     </div>
 
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+    crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+    crossorigin="anonymous"></script>
+
     <script type="text/javascript">
       $("#surveyForm").submit( (event) => {
         event.preventDefault();
@@ -173,22 +204,15 @@
         console.log(thisFriendInfo);
 
         $.post("/api/friends", thisFriendInfo)
-          .then( (data, status, jqxhr) => {
-            console.log("post to api", data, status, jqxhr);
-            console.log("TODO: make modal with data", data);
+          .then( ( { name, photoURL, score }, _status, _jqxhr) => {
+            $("#bestFriend_photo").attr('src', photoURL);
+            $("#bestFriend_name").text(name);
+            $("#bestFriend_score").text(score+'%');
+            $('#resultModal').modal('show')
           })
           .catch( (...err) => console.log("post error:", err));
       });
     </script>
-      <!-- <script
-        src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
-        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
-        crossorigin="anonymous"
-      ></script>
-      <script
-        src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
-        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
-        crossorigin="anonymous"
-      ></script> -->
+     
   </body>
 </html>
