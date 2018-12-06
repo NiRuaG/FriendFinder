@@ -122,7 +122,7 @@
                 <select class="surveyQ custom-select">
                   <option selected>(How would you agree?)</option>
                   <option value="1">Strongly Disagree</option>
-                  <option value="2">Slightly Disagree</option>
+                  <option value="2">Slightly herokDisagree</option>
                   <option value="3">Neither Agree or Disagree</option>
                   <option value="4">Slightly Agree</option>
                   <option value="5">Strongly Agree</option>
@@ -174,7 +174,7 @@
 
         $.post("/api/friends", thisFriendInfo)
           .then( (data, status, jqxhr) => {
-            // console.log("post to api", data, status, jqxhr);
+            console.log("post to api", data, status, jqxhr);
             console.log("TODO: make modal with data", data);
           })
           .catch( (...err) => console.log("post error:", err));
