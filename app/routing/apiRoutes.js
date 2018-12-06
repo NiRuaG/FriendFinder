@@ -7,16 +7,28 @@ module.exports = (app) => {
     return res.send(friendData);
   });
 
-  app.post("/api/friends", (req, res) => {
-    console.log(req.body);
+  app.post("/api/friends", ( { body: submitObj }, res) => {
+    console.log(submitObj);
 
-    const submittedScores = req.body.scores;
+    if (Array.isArray(friendData) && friendData.length === 0) {
+      return res.status(500).end();
+    }
+
+    const submittedScores = submitObj.scores;    
+
+    if (!submittedScores.every(Number)) {
+      return res.status(500).end();
+    }
 
     const bestFriend = friendData.reduce( (bestSoFar, currFriendCheck) => {
 
       const currCompat = currFriendCheck.scores.reduce( (accComp, currQScore, index) => 
         accComp + Math.abs(currQScore - submittedScores[index]), 0);
       console.log(currCompat);
+
+      if (Number.isNaN(currCompat)) {
+        return 
+      }
 
       if (currCompat < bestSoFar.compatScore) {
         return {
@@ -26,9 +38,9 @@ module.exports = (app) => {
       }
       // else 
         return bestSoFar;
-    }, {compatScore: Infinity}); // default is most-incompatible
+    }, {compatScore: Infinity}); // default is 'most incompatible'
 
-    friendData.push(req.body);
+    friendData.push(submitObj);
 
     let { friendObj: {name, photo}, compatScore } = bestFriend;
     res.json( { name, photo, compatScore } );
