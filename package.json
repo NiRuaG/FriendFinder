@@ -17,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/NiRuaG/FriendFinder/issues"
   },
-  "homepage": "https://github.com/NiRuaG/FriendFinder#readme"
+  "homepage": "https://github.com/NiRuaG/FriendFinder#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
 }
