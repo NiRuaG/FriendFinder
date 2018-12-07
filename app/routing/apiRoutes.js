@@ -1,5 +1,5 @@
 const friendsData = require("../data/friends");
-console.log(friendsData);
+// console.log(friendsData);
 
 
 module.exports = (app) => {
@@ -8,7 +8,8 @@ module.exports = (app) => {
   });
 
   app.post("/api/friends", ( {body: submitObj}, res) => {
-    console.log(submitObj);
+    //TODO: give user back their average compatibility versus all other friends
+    // console.log(submitObj);
 
     if (Array.isArray(friendsData) && friendsData.length === 0) {
       return res.status(500).end();
@@ -22,14 +23,14 @@ module.exports = (app) => {
 
     const bestFriend = friendsData.reduce( (acc_bestFriendSoFar, curr_friendToCheck) => {
 
-      const curr_friendsCompat = curr_friendToCheck.scores.reduce( (acc_compatibility, curr_QScore, index) => 
-        acc_compatibility + Math.abs(curr_QScore - submittedScores[index]), 0);
-      console.log(curr_friendsCompat);
+      const curr_friendCompat = curr_friendToCheck.scores.reduce( (acc_compatDiff, curr_QScore, index) => 
+        acc_compatDiff + Math.abs(curr_QScore - submittedScores[index]), 0);
+      // console.log(curr_friendCompat);
 
-      if (curr_friendsCompat < acc_bestFriendSoFar.compatibility) {
+      if (curr_friendCompat < acc_bestFriendSoFar.compatibility) {
         return {
           friendObj    : curr_friendToCheck,
-          compatibility: curr_friendsCompat
+          compatibility: curr_friendCompat
         }
       }
       // else 

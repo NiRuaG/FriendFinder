@@ -197,16 +197,16 @@
         event.preventDefault();
 
         let thisFriendInfo = {
-          name  : $("#name_input")     .val().trim(),
-          photo : $("#photoLink_input").val().trim(),
-          scores: Array.from($(".surveyQ")).map(el => +el.value)
+          name    : $("#name_input"     ).val().trim(),
+          photoURL: $("#photoLink_input").val().trim(),
+          scores  : Array.from($(".surveyQ")).map(el => +el.value)
         };
-        console.log(thisFriendInfo);
+        // console.log(thisFriendInfo);
 
         $.post("/api/friends", thisFriendInfo)
-          .then( ( { name, photoURL, score }, _status, _jqxhr) => {
+          .then( ({ name, photoURL, score }, _status, _jqxhr) => {
             $("#bestFriend_photo").attr('src', photoURL);
-            $("#bestFriend_name").text(name);
+            $("#bestFriend_name" ).text(name);
             $("#bestFriend_score").text(score+'%');
             $('#resultModal').modal('show')
           })

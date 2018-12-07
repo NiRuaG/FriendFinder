@@ -11,5 +11,5 @@ require("./app/routing/apiRoutes" )(app);
 require("./app/routing/htmlRoutes")(app); //! important to have this require as last, htmlRoutes contains 'catch-all' route
 
 app.listen(PORT, () => {
-  console.log(`App listening on http://localhost:${PORT}`);
+  // console.log(`App listening on http://localhost:${PORT}`);
 });
