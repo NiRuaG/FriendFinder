@@ -17,25 +17,29 @@
       integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
       crossorigin="anonymous"
     />
+    <link href="https://fonts.googleapis.com/css?family=Carter+One|Maven+Pro:700" rel="stylesheet">
+      
   </head>
+
   <style>
-    .fa-user-friends {
-      color: red;
-    }
+    .font-special { font-family: 'Carter One', cursive; }
+    .no-select { 
+      -moz-user-select: none; /* Firefox */
+      user-select: none;
+      }
   </style>
   <body class="container pt-3">
     <div class="jumbotron row">
-      <div class="col-12">
-        <div class="display-4">
+      <div class="col-12 text-center">
+        <div class="display-4 font-special text-danger no-select">
           <i class="fas fa-user-friends"></i>Friend Finder
         </div>
-        <p class="lead">LEAD LINE TBD</p>
         <p>
-          Answer a few basic questions.<br />
-          Then find the friend with the greatest compatibility!
+          Answer a few personality questions about yourself..<br />
+          Then <span class="font-special">Find</span> a best <span class="font-special">Friend</span> with the greatest compatibility!
         </p>
-        <a href="/survey" class="btn btn-danger">
-          <i class="fas fa-question-circle"></i>Take the Survey
+        <a href="/survey" class="btn btn-danger p-3">
+          <i class="fas fa-question-circle"></i> <strong>Take the Survey</strong>
         </a>
       </div>
     </div>
@@ -43,7 +47,7 @@
     <footer class="row">
       <a href="/api/friends" class="col nav-item">API Friends List</a>
     </footer>
-    
+
     <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
       integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

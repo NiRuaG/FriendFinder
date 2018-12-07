@@ -10,7 +10,30 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
       crossorigin="anonymous" />
     <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+    
+    <link href="https://fonts.googleapis.com/css?family=Carter+One|Maven+Pro:700" rel="stylesheet">
     <style>
+      .font-special { font-family: 'Carter One', cursive; }
+    
+      .font-header { font-family: 'Maven Pro', sans-serif; }
+    
+      .no-select {
+        -moz-user-select: none;
+        user-select: none;
+      }
+    
+      .row .form-group {
+        display: flex;
+        flex-flow: column wrap;
+        justify-content: space-between;
+      }
+    
+      #resultModal img {
+        max-height: 40vh;
+      }
+      .questionsList label {
+        font-size: 2rem;
+      }
     </style>
   </head>
   <body class="container bg-dark">
@@ -29,7 +52,7 @@
             <div class="card-img-top d-flex justify-content-center">
               <img id="bestFriend_photo" alt="Friend Photo" class="img-fluid">
             </div>
-            <div class="card-body">
+            <div class="card-body p-2">
               <h5 id="bestFriend_name" class="card-title"></h5>
               <p class="card-text">Compatibility Score: <span id="bestFriend_score"></span></p>
             </div>
@@ -41,145 +64,161 @@
       </div>
     </div>
     <!--#endregion MODAL -->
-  
     <div class="row">
       <div class="card col px-0">
-        <h1 class="card-header text-center bg-danger text-light py-3">
-          <strong>Friend Finder Survey</strong>
+        <h1 class="card-header text-center bg-danger text-light py-3 no-select">
+          <strong><i class="fas fa-user-friends"></i><span class="font-special">Friend Finder</span> Survey</strong>
         </h1>
-        <form id="surveyForm" class="card-body bg-dark">
+        <form id="surveyForm" class="card-body bg-dark needs-validation py-0" novalidate>
           <ul class="list-group list-group-flush">
             <li class="list-group-item bg-dark text-danger text-center">
-              <h3><strong>About You</strong></h3>
+              <h3 class="font-header"><strong>About You</strong></h3>
             </li>
-            <li class="list-group-item">
+            <li class="list-group-item rounded-top">
               <div class="form-group">
-                <label for="nameInput">Name <small class="text-muted"> (required)</small></label>
-                <input type="text" class="form-control" id="name_input" placeholder="Your Name" />
+                <label for="nameInput">Name<small class="text-muted"> (required)</small></label>
+                <input type="text" class="form-control" id="name_input" placeholder="Your Name" required/>
+                <!--TODO <div class="invalid-tooltip"> -->
+                  <!-- <span class="font-special">Friends</span> need a name! -->
+                <!-- </div> -->
               </div>
               <div class="form-group">
-                <label for="photoLink_input">Link to a Photo <small class="text-muted">(required)</small></label>
-                <input type="url" class="form-control" id="photoLink_input" placeholder="Photo URL" />
+                  <label for="photoLink_input"><i class="fas fa-camera text-danger"></i> Link to a Photo<small class="text-muted"> (required)</small></label>
+                <input type="url" class="form-control" id="photoLink_input" placeholder="http://" required/>
               </div>
             </li>
             <li class="list-group-item bg-dark text-danger text-center">
-              <h3><strong>Questions</strong></h3>
+              <h3 class="font-header"><strong>Questions</strong></h3>
             </li>
-            <li class="list-group-item">
-              <div class="form-group">
-                <label>1. Your mind is always buzzing with unexplored ideas and plans.</label>
-                <select class="surveyQ custom-select">
-                  <option selected>(How would you agree?)</option>
-                  <option value="1">Strongly Disagree</option>
-                  <option value="2">Slightly Disagree</option>
-                  <option value="3">Neither Agree or Disagree</option>
-                  <option value="4">Slightly Agree</option>
-                  <option value="5">Strongly Agree</option>
-                </select>
+            <li id="questionsList" class="list-group-item rounded-bottom">
+              <div class="row">
+                <div class="form-group col-12 col-lg-6">
+                  <label>1. Your mind is always buzzing with unexplored ideas and plans.</label>
+                  <select class="surveyQ custom-select" required>
+                    <option value="">(How would you agree?)</option>
+                    <option value="1">Strongly Disagree</option>
+                    <option value="2">Slightly Disagree</option>
+                    <option value="3">Neither Agree or Disagree</option>
+                    <option value="4">Slightly Agree</option>
+                    <option value="5">Strongly Agree</option>
+                  </select>
+                </div>
+                <div class="form-group col-12 col-lg-6">
+                  <label>2. Generally speaking, you rely more on your experience than your imagination.</label>
+                  <select class="surveyQ custom-select" required>
+                    <option value="">(How would you agree?)</option>
+                    <option value="1">Strongly Disagree</option>
+                    <option value="2">Slightly Disagree</option>
+                    <option value="3">Neither Agree or Disagree</option>
+                    <option value="4">Slightly Agree</option>
+                    <option value="5">Strongly Agree</option>
+                  </select>
+                </div>
               </div>
-              <div class="form-group">
-                <label>2. Generally speaking, you rely more on your experience than your imagination.</label>
-                <select class="surveyQ custom-select">
-                  <option selected>(How would you agree?)</option>
-                  <option value="1">Strongly Disagree</option>
-                  <option value="2">Slightly Disagree</option>
-                  <option value="3">Neither Agree or Disagree</option>
-                  <option value="4">Slightly Agree</option>
-                  <option value="5">Strongly Agree</option>
-                </select>
+
+              <div class="row">
+                <div class="form-group col-12 col-lg-6">
+                  <label>3. You find it easy to stay relaxed and focused even when there is some pressure.</label>
+                  <select class="surveyQ custom-select" required>
+                    <option value="">(How would you agree?)</option>
+                    <option value="1">Strongly Disagree</option>
+                    <option value="2">Slightly Disagree</option>
+                    <option value="3">Neither Agree or Disagree</option>
+                    <option value="4">Slightly Agree</option>
+                    <option value="5">Strongly Agree</option>
+                  </select>
+                </div>
+                <div class="form-group col-12 col-lg-6">
+                  <label>4. You rarely do something just out of sheer curiosity.</label>
+                  <select class="surveyQ custom-select" required>
+                    <option value="">(How would you agree?)</option>
+                    <option value="1">Strongly Disagree</option>
+                    <option value="2">Slightly Disagree</option>
+                    <option value="3">Neither Agree or Disagree</option>
+                    <option value="4">Slightly Agree</option>
+                    <option value="5">Strongly Agree</option>
+                  </select>
+                </div>
               </div>
-              <div class="form-group">
-                <label>3. You find it easy to stay relaxed and focused even when there is some pressure.</label>
-                <select class="surveyQ custom-select">
-                  <option selected>(How would you agree?)</option>
-                  <option value="1">Strongly Disagree</option>
-                  <option value="2">Slightly Disagree</option>
-                  <option value="3">Neither Agree or Disagree</option>
-                  <option value="4">Slightly Agree</option>
-                  <option value="5">Strongly Agree</option>
-                </select>
+
+              <div class="row">
+                <div class="form-group col-12 col-lg-6">
+                  <label>5. People can rarely upset you.</label>
+                  <select class="surveyQ custom-select" required>
+                    <option value="">(How would you agree?)</option>
+                    <option value="1">Strongly Disagree</option>
+                    <option value="2">Slightly Disagree</option>
+                    <option value="3">Neither Agree or Disagree</option>
+                    <option value="4">Slightly Agree</option>
+                    <option value="5">Strongly Agree</option>
+                  </select>
+                </div>
+                <div class="form-group col-12 col-lg-6">
+                  <label>6. It is often difficult for you to relate to other people’s feelings.</label>
+                  <select class="surveyQ custom-select" required>
+                    <option value="">(How would you agree?)</option>
+                    <option value="1">Strongly Disagree</option>
+                    <option value="2">Slightly Disagree</option>
+                    <option value="3">Neither Agree or Disagree</option>
+                    <option value="4">Slightly Agree</option>
+                    <option value="5">Strongly Agree</option>
+                  </select>
+                </div>
               </div>
-              <div class="form-group">
-                <label>4. You rarely do something just out of sheer curiosity.</label>
-                <select class="surveyQ custom-select">
-                  <option selected>(How would you agree?)</option>
-                  <option value="1">Strongly Disagree</option>
-                  <option value="2">Slightly Disagree</option>
-                  <option value="3">Neither Agree or Disagree</option>
-                  <option value="4">Slightly Agree</option>
-                  <option value="5">Strongly Agree</option>
-                </select>
+
+              <div class="row">
+                <div class="form-group col-12 col-lg-6">
+                  <label>7. In a discussion, truth should be more important than people’s sensitivities.</label>
+                  <select class="surveyQ custom-select" required>
+                    <option value="">(How would you agree?)</option>
+                    <option value="1">Strongly Disagree</option>
+                    <option value="2">Slightly Disagree</option>
+                    <option value="3">Neither Agree or Disagree</option>
+                    <option value="4">Slightly Agree</option>
+                    <option value="5">Strongly Agree</option>
+                  </select>
+                </div>
+                <div class="form-group col-12 col-lg-6">
+                  <label>8. You rarely get carried away by fantasies and ideas.</label>
+                  <select class="surveyQ custom-select" required>
+                    <option value="">(How would you agree?)</option>
+                    <option value="1">Strongly Disagree</option>
+                    <option value="2">Slightly Disagree</option>
+                    <option value="3">Neither Agree or Disagree</option>
+                    <option value="4">Slightly Agree</option>
+                    <option value="5">Strongly Agree</option>
+                  </select>
+                </div>
               </div>
-              <div class="form-group">
-                <label>5. People can rarely upset you.</label>
-                <select class="surveyQ custom-select">
-                  <option selected>(How would you agree?)</option>
-                  <option value="1">Strongly Disagree</option>
-                  <option value="2">Slightly Disagree</option>
-                  <option value="3">Neither Agree or Disagree</option>
-                  <option value="4">Slightly Agree</option>
-                  <option value="5">Strongly Agree</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label>6. It is often difficult for you to relate to other people’s feelings.</label>
-                <select class="surveyQ custom-select">
-                  <option selected>(How would you agree?)</option>
-                  <option value="1">Strongly Disagree</option>
-                  <option value="2">Slightly Disagree</option>
-                  <option value="3">Neither Agree or Disagree</option>
-                  <option value="4">Slightly Agree</option>
-                  <option value="5">Strongly Agree</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label>7. In a discussion, truth should be more important than people’s sensitivities.</label>
-                <select class="surveyQ custom-select">
-                  <option selected>(How would you agree?)</option>
-                  <option value="1">Strongly Disagree</option>
-                  <option value="2">Slightly Disagree</option>
-                  <option value="3">Neither Agree or Disagree</option>
-                  <option value="4">Slightly Agree</option>
-                  <option value="5">Strongly Agree</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label>8. You rarely get carried away by fantasies and ideas.</label>
-                <select class="surveyQ custom-select">
-                  <option selected>(How would you agree?)</option>
-                  <option value="1">Strongly Disagree</option>
-                  <option value="2">Slightly Disagree</option>
-                  <option value="3">Neither Agree or Disagree</option>
-                  <option value="4">Slightly Agree</option>
-                  <option value="5">Strongly Agree</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label>9. You think that everyone’s views should be respected regardless of whether they are supported by facts or not.</label>
-                <select class="surveyQ custom-select">
-                  <option selected>(How would you agree?)</option>
-                  <option value="1">Strongly Disagree</option>
-                  <option value="2">Slightly Disagree</option>
-                  <option value="3">Neither Agree or Disagree</option>
-                  <option value="4">Slightly Agree</option>
-                  <option value="5">Strongly Agree</option>
-                </select>
-              </div>
-              <div class="form-group">
-                <label>10. You feel more energetic after spending time with a group of people.</label>
-                <select class="surveyQ custom-select">
-                  <option selected>(How would you agree?)</option>
-                  <option value="1">Strongly Disagree</option>
-                  <option value="2">Slightly Disagree</option>
-                  <option value="3">Neither Agree or Disagree</option>
-                  <option value="4">Slightly Agree</option>
-                  <option value="5">Strongly Agree</option>
-                </select>
+
+              <div class="row">
+                <div class="form-group col-12 col-lg-6">
+                  <label>9. You think that everyone’s views should be respected regardless of whether they are supported by facts or not.</label>
+                  <select class="surveyQ custom-select" required>
+                    <option value="">(How would you agree?)</option>
+                    <option value="1">Strongly Disagree</option>
+                    <option value="2">Slightly Disagree</option>
+                    <option value="3">Neither Agree or Disagree</option>
+                    <option value="4">Slightly Agree</option>
+                    <option value="5">Strongly Agree</option>
+                  </select>
+                </div>
+                <div class="form-group col-12 col-lg-6">
+                  <label>10. You feel more energetic after spending time with a group of people.</label>
+                  <select class="surveyQ custom-select" required>
+                    <option value="">(How would you agree?)</option>
+                    <option value="1">Strongly Disagree</option>
+                    <option value="2">Slightly Disagree</option>
+                    <option value="3">Neither Agree or Disagree</option>
+                    <option value="4">Slightly Agree</option>
+                    <option value="5">Strongly Agree</option>
+                  </select>
+                </div>
               </div>
             </li>
             <li class="list-group-item form-row bg-dark text-center">
               <button type="submit" class="btn btn-danger col-md-6">
-                <i class="fas fa-clipboard-list"></i><strong>Submit & Find your Match!</strong>
+                <i class="fas fa-clipboard-list"></i> Submit & <span class="font-special">Find</span> your Match!
               </button>
             </li>
           </ul>
@@ -197,25 +236,37 @@
     crossorigin="anonymous"></script>
 
     <script type="text/javascript">
-      $("#surveyForm").submit( (event) => {
+      $("#surveyForm").submit( function(event) {
         event.preventDefault();
-
+        
         let thisFriendInfo = {
-          name    : $("#name_input"     ).val().trim(),
-          photoURL: $("#photoLink_input").val().trim(),
-          scores  : Array.from($(".surveyQ")).map(el => +el.value)
-        };
-        // console.log(thisFriendInfo);
+            name    : $("#name_input").val().trim(),
+            photoURL: $("#photoLink_input").val().trim(),
+            scores  : Array.from($(".surveyQ")).map(el => +el.value)
+          };
 
-        $.post("/api/friends", thisFriendInfo)
-          .then( ({ name, photoURL, score }, _status, _jqxhr) => {
-            $("#bestFriend_photo").attr('src', photoURL);
-            $("#bestFriend_name" ).text(name);
-            $("#bestFriend_score").text(score+'%');
-            $('#resultModal').modal('show')
-          })
-          .catch( (...err) => console.log("post error:", err));
+        $("#name_input"     ).val(thisFriendInfo.name    );
+        $("#photoLink_input").val(thisFriendInfo.photoURL);
+
+        if (this.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+          this.classList.add('was-validated');
+          return false;
+        }
+        // else
+        {
+          $.post("/api/friends", thisFriendInfo)
+            .then(({ name, photoURL, score }, _status, _jqxhr) => {
+              $("#bestFriend_photo").attr('src', photoURL);
+              $("#bestFriend_name").text(name);
+              $("#bestFriend_score").text(score + '%');
+              $('#resultModal').modal('show')
+            })
+            .catch((...err) => console.log("post error:", err));
+        }
       });
+      
     </script>
      
   </body>
