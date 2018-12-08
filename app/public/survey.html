@@ -236,11 +236,13 @@
     crossorigin="anonymous"></script>
 
     <script type="text/javascript">
+      
       $("#surveyForm").submit( function(event) {
+        this.classList.remove('was-validated');
         event.preventDefault();
         
         let thisFriendInfo = {
-            name    : $("#name_input").val().trim(),
+            name    : $("#name_input"     ).val().trim(),
             photoURL: $("#photoLink_input").val().trim(),
             scores  : Array.from($(".surveyQ")).map(el => +el.value)
           };
@@ -252,10 +254,14 @@
           event.preventDefault();
           event.stopPropagation();
           this.classList.add('was-validated');
+          // $("html, body").animate({ scrollTop: 0 }, 1000, "swing");
           return false;
         }
         // else
         {
+          this.reset();
+          this.classList.remove('was-validated');
+
           $.post("/api/friends", thisFriendInfo)
             .then(({ name, photoURL, score }, _status, _jqxhr) => {
               $("#bestFriend_photo").attr('src', photoURL);
